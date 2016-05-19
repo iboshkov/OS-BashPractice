@@ -1,0 +1,22 @@
+#!/bin/bash
+# 8. Да се најдат (временски) најновите 7 датотеки во тековниот директориум
+# чиешто име започнува со poc.
+
+[ -d "~/gjubre" ] || mkdir ~/gjubre
+
+SEGA=`date +"%s"`
+
+for item in $*
+do
+    echo $item
+    cp -p $item ~/gjubre
+done
+
+for item in ~/gjubre/*
+do
+    MOD=`date -r $item +"%s"`
+    DIF=`expr $SEGA - $MOD`
+    DIFH=`expr $DIF / 3600`
+    echo "$MOD $DIFH"
+    [ $DIFH -gt 10 ] && rm $item
+done

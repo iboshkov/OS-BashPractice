@@ -1,0 +1,7 @@
+#!/bin/bash
+for item in *
+do
+    # not a folder and is executable
+    [ ! -d $item ] && [ -x $item ] && echo "Copying $item to ./vezbi/$item" &&\
+    cp $item ./vezbi/$item
+done

@@ -1,0 +1,13 @@
+#!/bin/bash
+# 6. Да се најде колку меморија зафаќаат датотеките во тековниот директориум
+# кои имаат наставка .txt.
+SIZE=0
+
+for item in `ls -l *.txt | awk '{print $5}'`
+do
+    echo $item
+    SIZE=`expr $SIZE + $item`
+
+done
+
+echo "Brojot na poddirektoriumi e $SIZE."

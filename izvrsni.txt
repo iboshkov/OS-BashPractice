@@ -1,0 +1,7 @@
+exe1
+exe2
+exe3
+zadaca1
+zadaca2
+zadaca3
+zadaca4

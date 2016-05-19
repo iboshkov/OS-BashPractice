@@ -1,0 +1,16 @@
+#!/bin/bash
+# 8. Да се најдат (временски) најновите 7 датотеки во тековниот директориум
+# чиешто име започнува со poc.
+
+echo "Working with $1"
+DIR=$1
+
+echo "Vo $DIR se naogjaat:" >> listing
+ls -l $DIR >> listing
+for item in $DIR/*
+do
+    if [[ -d $item ]]; then
+        echo "going into $item"
+        ./zadaca9 $item
+    fi
+done

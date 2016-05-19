@@ -1,0 +1,18 @@
+#!/bin/bash
+# 8. Да се најдат (временски) најновите 7 датотеки во тековниот директориум
+# чиешто име започнува со poc.
+
+PROCESI=`ps -eo pid --no-heading`
+
+for proces in $PROCESI
+do
+    parent=`ps -o ppid -p $proces --no-heading`
+    echo "$proces: $parent"
+    echo "To be or not to be ? [y/n]"
+    read ubij
+    if [ $ubij == "y" ]; then
+        echo "Kill"
+    else
+        echo "Spare"
+    fi
+done

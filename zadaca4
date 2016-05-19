@@ -1,0 +1,18 @@
+#!/bin/bash
+# 4. Направете скрипта која ги печати имињата на сите извршни датотеки од
+# тековниот директориум во датотека izvrsni.txt, а на крај го печати и нивниот
+# број
+
+BR=0
+
+for item in *
+do
+    # not a folder and is executable
+    if [[ -f $item ]] && [[ -x $item ]]; then
+        echo "$item" >> izvrsni.txt
+        BR=`expr $BR + 1`
+    fi
+
+done
+
+echo "Brojot na poddirektoriumi e $BR."

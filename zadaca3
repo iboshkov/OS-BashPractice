@@ -1,0 +1,15 @@
+#!/bin/bash
+# 3. Направете скрипта која на секои 10 секунди ќе проверува дали корисникот
+# student е најавен на системот, се додека тој не се најави (со користење на
+# наредбата sleep n , каде n е бројот на секунди)
+
+najaven=0
+
+while [ $najaven -eq 0 ]
+do
+    najaven=`who | grep -c "ilija"`
+    if [ $najaven -eq 0 ]
+    then
+        sleep 10
+    fi
+done

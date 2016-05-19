@@ -1,0 +1,46 @@
+#!/bin/bash
+# 30. Некои податочни бази користат датотеки во кои податоците се одделени со
+# запирки, после кои следи празно место. Потребно е секој ред од датотеката да се
+# сними во посебна датотека, именувана според првиот збор, при што доколку
+# зборот се повторува, името на датотеката да завршува со соодветен реден број,
+# почнувајќи од 0. Во датотеката сите зборови од соодветната линија одделени со
+# запирки се пишуваат во нов ред. На пример, ако влезната датотека е следнава:
+# John, Doe, 1555, Main St., Baltimore, MD 21228, (410) 222-3333,
+# Mary, Moe, 9899, Jones Blvd., Warren, NH 03787, (603) 898-3232,
+# Richard, Roe, 856, E. 7th St., New York, NY 10009, (212) 333-4567,
+# Sam, Roe, 956, E. 8th St., New York, NY 10009, (212) 444-5678,
+# Zoe, Zenobia, 4481, N. Baker St., San Franciso, SF 94338, (415) 501-1631,
+# Richard, Zenobia, 856, E. 7th St., New York, NY 10009, (212) 333-4567,
+# тогаш се креираат датотеките John, Mary, Richard1, Sam, Zoe, Richard2 , така што
+# во John се наоѓа
+# John
+# Doe
+# 1555
+# Main St.
+# Baltimore
+# MD 21228
+# (410) 222-3333
+
+while read line
+do
+    #echo $line
+    ime=$(echo $line | sed "s/,.*//g")
+    sodrzina=$(echo $line | sed "s/,$/\n/g; s/, /\n/g")
+    i=0
+    najdeno=0
+
+    echo "$sodrzina"
+    echo "-------"
+    outFile=./db/$ime
+    if [ -f $outFile ]; then
+        while [ $najdeno -eq 0 ]
+        do
+            outFile=./db/$ime$i
+            if [ ! -f $outFile ]; then
+                najdeno=1
+            fi
+            ((i++))
+        done
+    fi
+    echo "$sodrzina" > $outFile
+done < ./csvdb

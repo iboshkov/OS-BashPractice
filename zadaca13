@@ -1,0 +1,12 @@
+#!/bin/bash
+# 8. Да се најдат (временски) најновите 7 датотеки во тековниот директориум
+# чиешто име започнува со poc.
+
+
+KOMANDA=""
+
+while [[ $KOMANDA != "kraj" ]]
+do
+    read KOMANDA
+    ./skripta $KOMANDA >> izlez.txt
+done

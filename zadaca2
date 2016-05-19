@@ -1,0 +1,21 @@
+#!/bin/bash
+# 2. Направете скрипта која ги печати имињата на сите поддиректориуми од
+# домашниот директориум, а на крај печати “ Brojot na poddirektoriumi e n”, каде n
+# е нивниот број.
+
+BR=0
+
+for item in ~/*
+do
+    # not a folder and is executable
+    if [[ -d $item ]]; then
+        echo "Subitems of $item: "
+        for subitem in $item/*
+        do
+            [[ -d $subitem ]] && echo "---- $subitem" &&  BR=`expr $BR + 1`
+        done
+    fi
+
+done
+
+echo "Brojot na poddirektoriumi e $BR."

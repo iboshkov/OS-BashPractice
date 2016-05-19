@@ -1,0 +1,27 @@
+#!/bin/bash
+# 4. Направете скрипта која ги печати имињата на сите извршни датотеки од
+# тековниот директориум во датотека izvrsni.txt, а на крај го печати и нивниот
+# број
+
+IZBRISANI=0
+NEIZBRISANI=0
+
+for item in *
+do
+    # not a folder and is executable
+    if [[ -f $item ]] && [[ -x $item ]]; then
+        echo "Sigurno sakas da brisis ? [y/n]"
+        read ODGOVOR
+        if [ $ODGOVOR == "y" ]
+        then
+            echo "DELETE!"
+            IZBRISANI=`expr $IZBRISANI + 1`
+        else
+            NEIZBRISANI=`expr $NEIZBRISANI + 1`
+        fi
+    fi
+
+done
+
+echo "Izbrisani: $IZBRISANI"
+echo "Neizbrisani: $NEIZBRISANI"
